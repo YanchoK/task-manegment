@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import './App.css'
-import { Task } from './interfaces';
+import './App.css';
+import { Task } from './interfaces/Task';
 import ContentList from './components/contentList/ContentList';
 import ContentDetails from './components/contentDetails/ContentDetails';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
 
 const App: React.FC = () => {
-  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [formValues, setFormValues] = useState<Partial<Task>>({});
-
   const task1: Task = {
     id: 1,
     description: 'Task 1',
@@ -33,63 +32,71 @@ const App: React.FC = () => {
     dueDate: new Date(),
   };
 
-  const [tasks, setTasks] = useState<Task[]>([task1, task2, task3]);
-
-  const handleTaskClick = (task: Task) => {
-    setSelectedTask(task);
-    setFormValues(task);
+  const emptyTask: Task = {
+    id: -1,
+    description: '',
+    assignee: '',
+    status: '',
+    priority: 1,
+    dueDate: new Date(),
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormValues((prevFormValues) => ({
-      ...prevFormValues,
-      [name]: value,
-    }));
+  let taskInitial = [task1, task2, task3];
+
+  const [tasks, setTasks] = useState(taskInitial);
+  const [selectedTask, setTask] = useState<Task>(emptyTask);
+
+  const handleSaveTask = (task: Task) => {
+    let tasksLength = tasks.length + 1;
+    task.id = tasksLength;
+    let taskArray = [...tasks, task] as Task[];
+    setTasks(taskArray);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (selectedTask) {
-      const updatedTask: Task = {
-        ...selectedTask,
-        ...formValues,
-      };
-      // Handle form submission logic with the updatedTask
-      console.log(updatedTask);
-    }
+  const handleTaskUpdate = (task: Task) => {
+    let taskIndex = tasks.findIndex((item) => item.id === task.id);
+    let taskArr = [...tasks];
+    let updatedTask = { ...tasks[taskIndex] };
+    updatedTask = task;
+    taskArr[taskIndex] = updatedTask;
+    setTasks(taskArr);
   };
 
-  const handleDelete = (id: number) => {
-    // Remove the task with the specified id from the tasks list
-    const updatedTasks = tasks.filter((task) => task.id !== id);
+  const handleTaskSelection = (task: Task) => {
+    setTask(task);
+  };
 
-    // Update the tasks list with new IDs
-    const updatedTasksWithIds = updatedTasks.map((task, index) => ({
+  const handleTaskDelete = (taskId: number) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    const updatedTasksWithNewIds = updatedTasks.map((task, index) => ({
       ...task,
       id: index + 1,
     }));
-
-    // Update the tasks list and clear the selected task and form values
-    setTasks(updatedTasksWithIds);
-    setSelectedTask(null);
-    setFormValues({});
+    setTasks(updatedTasksWithNewIds);
+    setTask(emptyTask);
   };
+  
 
-  const handleClear=()=>{
-    setSelectedTask(null);
-    setFormValues({});
-  }
+  const handleClear = () => {
+    setTask(emptyTask);
+  };
 
   return (
     <div className="container">
-      <ContentList tasks={tasks} handleTaskClick={handleTaskClick} handleDelete={handleDelete}/>
-      <ContentDetails
-        task={selectedTask}
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-        handleClear={handleClear}
+      <Navbar/>
+      <ContentList
+        tasks={tasks}
+        onSelectedTask={handleTaskSelection}
+        onDeletedTask={handleTaskDelete}
+        onClear={handleClear}
       />
+      <ContentDetails
+        onSave={handleSaveTask}
+        onUpdate={handleTaskUpdate}
+        selectedTask={selectedTask}
+        onClear={handleClear}
+      />
+      <Footer/>
     </div>
   );
 };
