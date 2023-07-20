@@ -24,7 +24,7 @@
       description: 'Edit',
       assignee: 'Yancho',
       status: 'In progress',
-      priority: 1,
+      priority: 3,
       dueDate: new Date(),
     };
     const task2: Task = {
@@ -32,7 +32,7 @@
       description: 'Sellect and clear the task',
       assignee: 'Yancho',
       status: 'In progress',
-      priority: 2,
+      priority: 1,
       dueDate: addToDate(1),
     };
     const task3: Task = {
@@ -40,7 +40,7 @@
       description: 'Delete this task',
       assignee: 'Yancho',
       status: 'In progress',
-      priority: 1,
+      priority: 2,
       dueDate: addToDate(2),
     };
     const task4: Task = {
@@ -48,7 +48,7 @@
       description: 'Last day',
       assignee: 'Yancho',
       status: 'In progress',
-      priority: 1,
+      priority: 4,
       dueDate: addToDate(-1),
     };
     const task5: Task = {
@@ -56,7 +56,7 @@
       description: 'Forgot this one',
       assignee: 'Yancho',
       status: 'In progress',
-      priority: 1,
+      priority: 2,
       dueDate: addToDate(-2),
     };
     const task6: Task = {
@@ -64,7 +64,7 @@
       description: 'Go to the fitness',
       assignee: 'Yancho',
       status: 'In progress',
-      priority: 1,
+      priority: 3,
       dueDate: addToDate(7),
     };
     const task7: Task = {

@@ -8,27 +8,30 @@ The Task Management System is a simple Single Page Application (SPA) built using
 ## Content
  1. Base functionality
 	 - Selecting and editing task
-	 - Selecting and clearing task
+	 - Selecting and clearing
 	 - Creating task
 	 - Deleting task	
  2. Aditional functionality
 	 - Check task as completed
+	 - Sorting tasks
 	 - View tasks in the calendar
 	 - Select and edit task in the calendar
 
 ## Base functionality
 ### Selecting and editing task
-![](./showof-videos/selectAndEdit.gif)
-### Selecting and clearing task
-![](./showof-videos/selectAndClear.gif)
+![](./showcase-gifs/selectAndEdit.gif)
+### Selecting and clearing
+![](./showcase-gifs/selectAndClear.gif)
 ### Creating task
-![](./showof-videos/create.gif)
+![](./showcase-gifs/create.gif)
 ### Deleting task
-![](./showof-videos/delete.gif)
+![](./showcase-gifs/delete.gif)
 ## Aditional functionality
 ### Check task as completed
-![](./showof-videos/checkbox.gif)
+![](./showcase-gifs/checkbox.gif)
+### Sorting tasks
+![](./showcase-gifs/sorting.gif)
 ### View tasks in the calendar
-![](./showof-videos/calendar.gif)
-### Select task in the calendar
-![](./showof-videos/calendarEdit.gif)
+![](./showcase-gifs/calendar.gif)
+### Select and edit task in the calendar
+![](./showcase-gifs/calendarEdit.gif)
