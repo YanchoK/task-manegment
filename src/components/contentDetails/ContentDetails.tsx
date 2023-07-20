@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-
 import { Task } from '../../interfaces/Task';
 
 interface Props {
@@ -21,11 +20,14 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
 
   const [formValues, setFormValues] = useState<Task>(emptyTask);
 
-  useEffect(() => {
+   useEffect(() => {
+    console.log("useEffect in ContentDetails")
     setFormValues(props.selectedTask || emptyTask);
   }, [props.selectedTask]);
 
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("handleInputChange in ContentDetails")
     const { name, value } = e.target;
     setFormValues(prevValues => ({ ...prevValues, [name]: value }));
   };
@@ -44,61 +46,111 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
     }
   };
 
+  // Form effects
+  useEffect(() => {
+    console.log("in the effect!!!")
+    const inputs = document.querySelectorAll('.group input');
+    const handleBlur = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.value) {
+        target.classList.add('used');
+      } else {
+        target.classList.remove('used');
+      }
+    };
+
+    inputs.forEach((input) => {
+      input.addEventListener('blur', handleBlur);
+    });
+
+    return () => {
+      inputs.forEach((input) => {
+        input.removeEventListener('blur', handleBlur);
+      });
+    };
+  }, [props.onClear]);
+
   return (
     <div className="content-details">
-      <form className="form" onSubmit={handleSubmit}>
-        <input
-          id='field1'
-          type="text"
-          placeholder="Description"
-          className="input"
-          name="description"
-          value={formValues.description}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          id='field2'
-          type="text"
-          placeholder="Assignee"
-          className="input"
-          name="assignee"
-          value={formValues.assignee}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          id='field3'
-          type="text"
-          placeholder="Status"
-          className="input"
-          name="status"
-          value={formValues.status}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          id='field4'
-          type="text"
-          placeholder="Priority"
-          className="input"
-          name="priority"
-          value={formValues.priority}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          id='field5'
-          type="date"
-          placeholder="Due Date"
-          className="input"
-          name="dueDate"
-          value={formValues.dueDate.toISOString().substr(0, 10)}
-          onChange={handleDateChange}
-          required
-        />
-        <button id='saveButton' className="form-button" type="submit">Save</button>
-        <button id='clearButton' className="form-button" onClick={props.onClear}>Clear</button>
+      <form className="" onSubmit={handleSubmit}>
+        <div className="group">
+          <input
+            id="field1"
+            type="text"
+            name="description"
+            className={`field`}
+            value={formValues.description}
+            onChange={handleInputChange}
+            required
+          />
+          <span className="highlight"></span>
+          <span className="bar"></span>
+          <label>Description</label>
+        </div>
+        <div className="group">
+          <input
+            id="field2"
+            type="text"
+            name="assignee"
+            className={`field`}
+            value={formValues.assignee}
+            onChange={handleInputChange}
+            required
+          />
+          <span className="highlight"></span>
+          <span className="bar"></span>
+          <label>Assignee</label>
+        </div>
+        <div className="group">
+          <input
+            id="field3"
+            type="text"
+            name="status"
+            className={`field`}
+            value={formValues.status}
+            onChange={handleInputChange}
+            required
+          />
+          <span className="highlight"></span>
+          <span className="bar"></span>
+          <label>Status</label>
+        </div>
+        <div className="group">
+          <input
+            id="field4"
+            type="text"
+            name="priority"
+            className='field used'
+            value={formValues.priority}
+            onChange={handleInputChange}
+            required
+          />
+          <span className="highlight"></span>
+          <span className="bar"></span>
+          <label>Priority</label>
+        </div>
+        <div className="group">
+          <input
+            id="field5"
+            type="date"
+            name="dueDate"
+            className='field used'
+            value={formValues.dueDate.toISOString().substr(0, 10)}
+            onChange={handleDateChange}
+            required
+          />
+          <span className="highlight"></span>
+          <span className="bar"></span>
+          <label>Due Date</label>
+        </div>
+        <div className='form-buttons'>
+        <button type="submit" id='saveButton' className="button buttonBlue">Save
+          <div className="ripples buttonRipples"><span className="ripplesCircle"></span></div>
+        </button>
+        <button type="button" id='clearButton' className="button buttonBlue" onClick={props.onClear}>Clear
+          <div className="ripples buttonRipples"><span className="ripplesCircle"></span></div>
+        </button>
+        </div>
       </form>
     </div>
   );
