@@ -73,24 +73,8 @@ const App: React.FC = () => {
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
-    dueDate: addToDate(3),
+    dueDate: addToDate(10),
   };
-  // const task8: Task = {
-  //   id: 8,
-  //   description: 'Task 2',
-  //   assignee: 'Yancho',
-  //   status: 'In progress',
-  //   priority: 1,
-  //   dueDate: new Date(),
-  // };
-  // const task9: Task = {
-  //   id: 9,
-  //   description: 'Task 3',
-  //   assignee: 'Yancho',
-  //   status: 'In progress',
-  //   priority: 1,
-  //   dueDate: new Date(),
-  // };
 
   const emptyTask: Task = {
     id: -1,
@@ -162,9 +146,6 @@ const App: React.FC = () => {
       element.classList.remove('used');
     });
   };
-
-  //TODO: If the list item is clicked, and then deleted, the details section form should be cleared.
-  // TODO: when task is set done from the box and deleted, the done goes to the next task 
 
   return (
     <div className='wrapper'>

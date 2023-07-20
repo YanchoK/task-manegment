@@ -15,43 +15,43 @@ interface Props {
 }
 
 const Calendar: React.FC<Props> = (props: Props) => {
-  const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
 
-  const handleDateSelect = (selectInfo: DateSelectArg) => {
-    let title = prompt('Please enter a new title for your event');
-    let calendarApi = selectInfo.view.calendar;
+  // const handleDateSelect = (selectInfo: DateSelectArg) => {
+  //   let title = prompt('Please enter a new title for your event');
+  //   let calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // clear date selection
+  //   calendarApi.unselect(); // clear date selection
 
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay,
-      });
-    }
-  };
-
-  const handleEventClick = (clickInfo: EventClickArg) => {
-    let foundTask = props.tasks.find((item) => item.id ===Number(clickInfo.event.id)) as Task;
-    props.onSelectedTask(foundTask);
-    window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    })
-  };
+  //   if (title) {
+  //     calendarApi.addEvent({
+  //       id: createEventId(),
+  //       title,
+  //       start: selectInfo.startStr,
+  //       end: selectInfo.endStr,
+  //       allDay: selectInfo.allDay,
+  //     });
+  //   }
+  // };
 
   // const handleEvents = (events: EventApi[]) => {
   //   setCurrentEvents(events);
   // };
+
+  const handleEventClick = (clickInfo: EventClickArg) => {
+    let foundTask = props.tasks.find((item) => item.id === Number(clickInfo.event.id)) as Task;
+    props.onSelectedTask(foundTask);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  };
 
   function convertTaskToEvent(task: Task) {
     return {
       id: task.id.toString(),
       title: task.description,
       start: task.dueDate,
+      allDay: true
       // Add other properties as needed (e.g., 'end', 'allDay', 'extendedProps', etc.).
     };
   }
@@ -78,14 +78,14 @@ const Calendar: React.FC<Props> = (props: Props) => {
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
           }}
           initialView='dayGridMonth'
-          editable={true}
+          editable={false}
           selectable={true}
           selectMirror={true}
           dayMaxEvents={true}
           weekends={true}
           events={events}
           initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-          select={handleDateSelect}
+          // select={handleDateSelect}
           eventContent={renderEventContent} // custom render function
           eventClick={handleEventClick}
           // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
