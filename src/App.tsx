@@ -1,197 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-
-// export interface Task {
-//   id: number;
-//   description: string;
-//   assignee: string;
-//   status: string;
-//   priority: number;
-//   dueDate: Date;
-// }
-
-// const initialFormState: Task = {
-//   id: 0,
-//   description: '',
-//   assignee: '',
-//   status: '',
-//   priority: 0,
-//   dueDate: new Date(),
-// };
-
-// const TaskList: React.FC = () => {
-//   const [tasks, setTasks] = useState<Task[]>([
-//     {
-//       id: 1,
-//       description: 'Task 1',
-//       assignee: 'John',
-//       status: 'Pending',
-//       priority: 1,
-//       dueDate: new Date(),
-//     },
-//     {
-//       id: 2,
-//       description: 'Task 2',
-//       assignee: 'Jane',
-//       status: 'Completed',
-//       priority: 2,
-//       dueDate: new Date(),
-//     },
-//     {
-//       id: 3,
-//       description: 'Task 3',
-//       assignee: 'Bob',
-//       status: 'Pending',
-//       priority: 3,
-//       dueDate: new Date(),
-//     },
-//   ]);
-//   const [formState, setFormState] = useState<Task>(initialFormState);
-
-//   // const handleDelete = (taskId: number) => {
-//   //   const updatedTasks = tasks.filter((task) => task.id !== taskId).map((task, index) => ({
-//   //     ...task,
-//   //     id: index + 1,
-//   //   }));
-//   //   setTasks(updatedTasks);
-//   // };
-
-
-//   const handleDelete = (taskId: number) => {
-//     const updatedTasks = tasks.filter((task) => task.id !== taskId);
-//     setTasks(updatedTasks);
-//   };
-
-//   useEffect(() => {
-//     // console.log(tasks);
-//   }, [tasks]);  
-
-//   useEffect(() => {
-//     if (tasks.find((task) => task.id === formState.id) === undefined) {
-//       setFormState(initialFormState);
-//       // console.log(tasks);
-//     }
-//   }, [tasks, formState.id]);
-
-
-//   const handleFormChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-//     const { name, value } = event.target;
-//     setFormState((prevState) => ({
-//       ...prevState,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleClearForm = () => {
-//     setFormState(initialFormState);
-//   };
-
-//   const handleSaveTask = () => {
-//     if (!formState.description || !formState.assignee || !formState.status) {
-//       return;
-//     }
-
-//     if (formState.id === 0) {
-//       // Adding a new task
-//       const newTask: Task = {
-//         ...formState,
-//         id: tasks.length + 1,
-//         dueDate: new Date(formState.dueDate),
-//       };
-
-//       setTasks((prevTasks) => [...prevTasks, newTask]);
-//     } else {
-//       // Editing an existing task
-//       const updatedTasks = tasks.map((task) =>
-//         task.id === formState.id ? { ...formState } : task
-//       );
-
-//       setTasks(updatedTasks);
-//     }
-
-//     setFormState(initialFormState);
-//   };
-
-
-//   const handleTaskClick = (task: Task) => {
-//     setFormState(task);
-//   };
-
-//   return (
-//     <div>
-//       <h2>Task List</h2>
-//       <ul>
-//         {tasks.map((task) => (
-//           <li key={task.id} onClick={() => handleTaskClick(task)}>
-//             <span>{task.description}</span>
-//             <button onClick={() => handleDelete(task.id)}>Delete</button>
-//           </li>
-//         ))}
-//       </ul>
-
-//       <h2>Add Task</h2>
-//       <form>
-//         <label>
-//           Description:
-//           <input
-//             type="text"
-//             name="description"
-//             value={formState.description}
-//             onChange={handleFormChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Assignee:
-//           <input
-//             type="text"
-//             name="assignee"
-//             value={formState.assignee}
-//             onChange={handleFormChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Status:
-//           <select name="status" value={formState.status} onChange={handleFormChange}>
-//             <option value="">-- Select status --</option>
-//             <option value="Pending">Pending</option>
-//             <option value="Completed">Completed</option>
-//           </select>
-//         </label>
-//         <br />
-//         <label>
-//           Priority:
-//           <input
-//             type="number"
-//             name="priority"
-//             value={formState.priority}
-//             onChange={handleFormChange}
-//           />
-//         </label>
-//         <br />
-//         <label>
-//           Due Date:
-//           <input
-//             type="date"
-//             name="dueDate"
-//             value={formState.dueDate.toISOString().slice(0, 10)}
-//             onChange={handleFormChange}
-//           />
-//         </label>
-//         <br />
-//         <button type="button" onClick={handleSaveTask}>
-//           Save
-//         </button>
-//         <button type="button" onClick={handleClearForm}>
-//           Clear
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default TaskList;
-
 
 import React, { useState } from 'react';
 import './App.css';
@@ -200,6 +6,7 @@ import ContentList from './components/contentList/ContentList';
 import ContentDetails from './components/contentDetails/ContentDetails';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
+import DemoApp from './components/callender/DemoApp';
 
 const App: React.FC = () => {
   const task1: Task = {
@@ -315,7 +122,7 @@ const App: React.FC = () => {
 
     // Loop through each element and add the new class "newClass"
     fieldElements.forEach((element) => {
-      element.classList.add('used');
+      element.classList.add('form-input');
     });
 
     setTask(task);
@@ -344,7 +151,7 @@ const App: React.FC = () => {
 
   return (
     <div className='wrapper'>
-        <Navbar />
+      <Navbar />
       <div className="container">
         <ContentList
           tasks={tasks}
@@ -359,7 +166,10 @@ const App: React.FC = () => {
           onClear={handleClear}
         />
       </div>
-        <Footer />
+      <div className='calendar-container'>
+        <DemoApp />
+      </div>
+      <Footer />
     </div>
   );
 };

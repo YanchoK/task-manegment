@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { Task } from '../../interfaces/Task';
+import './ContentDetails.css'
 
 interface Props {
   onSave: (task: Task) => void;

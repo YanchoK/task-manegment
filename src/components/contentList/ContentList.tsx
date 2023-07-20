@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { Task } from '../../interfaces/Task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import './ContentList.css'
 
 interface Props {
   tasks: Task[];

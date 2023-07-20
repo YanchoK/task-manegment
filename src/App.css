@@ -1,12 +1,16 @@
 .wrapper {
-  height: 100vh;
-  overflow: hidden;
+  height: 300vh;
+  /* overflow: hidden; */
+  border: #09c309 2px solid;
+
 }
 
 .container {
   display: flex;
-  height: 84%;
-  /* height: 100vh; */
+  /* height: 84%; */
+  height: 84vh;
+  border: #f7450a 2px solid;
+
 }
 
 .content-list {
@@ -192,23 +196,6 @@ ul {
 .navbar-button:hover {
   background-color: #999;
 }
-
-.footer {
-  grid-area: footer;
-  background-color: #333;
-  color: #fff;
-
-  padding: 10px;
-
-  text-align: center;
-  font-size: 14px;
-  height: 5%;
-}
-
-.footer {
-  margin-top: auto;
-}
-
 
 /* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:600&display=swap'); */
 
@@ -487,4 +474,12 @@ input:focus ~ .highlight {
     padding-bottom: 200%;
     opacity: 0;
   }
+}
+
+
+.calendar-container {
+  width: 85%;
+  margin: 2rem auto;
+  height: 100vh;
+   border: #f7450a 2px solid;
 }
