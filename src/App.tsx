@@ -176,6 +176,7 @@ const App: React.FC = () => {
       <section id='calendar' className='calendar-container'>
         <div className='calendar-wrapper'>
           <Calendar 
+          onSelectedTask={handleTaskSelection}
           tasks={tasks}/>
         </div>
       </section>

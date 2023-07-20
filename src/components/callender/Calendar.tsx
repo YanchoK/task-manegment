@@ -10,6 +10,7 @@ import { Task } from '../../interfaces/Task';
 
 interface Props {
   // currentEvents: EventApi[];
+  onSelectedTask: (data: Task) => void;
   tasks: Task[];
 }
 
@@ -34,15 +35,17 @@ const Calendar: React.FC<Props> = (props: Props) => {
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
-    const title = prompt('Enter a new title for the event:', clickInfo.event.title);
-    if (title) {
-      clickInfo.event.setProp('title', title);
-    }
+    let foundTask = props.tasks.find((item) => item.id ===Number(clickInfo.event.id)) as Task;
+    props.onSelectedTask(foundTask);
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
   };
 
-  const handleEvents = (events: EventApi[]) => {
-    setCurrentEvents(events);
-  };
+  // const handleEvents = (events: EventApi[]) => {
+  //   setCurrentEvents(events);
+  // };
 
   function convertTaskToEvent(task: Task) {
     return {
@@ -57,7 +60,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
 
   function renderEventContent(eventContent: EventContentArg) {
     return (
-      <>
+      < >
         <b>{eventContent.timeText}</b>
         <i>{eventContent.event.title}</i>
       </>
