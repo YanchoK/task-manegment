@@ -144,6 +144,13 @@ const App: React.FC = () => {
     console.log("handleClear in App")
     console.log(tasks)
     setTask(emptyTask);
+
+    const fieldElements = document.querySelectorAll('.form-input');
+
+    // Loop through each element and add the new class "newClass"
+    fieldElements.forEach((element) => {
+      element.classList.remove('used');
+    });
   };
 
   //TODO: If the list item is clicked, and then deleted, the details section form should be cleared.
@@ -167,7 +174,9 @@ const App: React.FC = () => {
         />
       </div>
       <div className='calendar-container'>
-        <DemoApp />
+        <div className='calendar-wrapper'>
+          <DemoApp />
+        </div>
       </div>
       <Footer />
     </div>

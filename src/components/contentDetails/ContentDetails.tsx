@@ -49,7 +49,6 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
 
   // Form effects
   useEffect(() => {
-    console.log("in the effect!!!")
     const inputs = document.querySelectorAll('.group input');
     const handleBlur = (e: Event) => {
       const target = e.target as HTMLInputElement;
@@ -69,7 +68,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
         input.removeEventListener('blur', handleBlur);
       });
     };
-  }, [props.onClear]);
+  });
 
   return (
     <div className="content-details">
@@ -121,7 +120,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field4"
             type="text"
             name="priority"
-            className='form-input used'
+            className='used'
             value={formValues.priority}
             onChange={handleInputChange}
             required
@@ -135,7 +134,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field5"
             type="date"
             name="dueDate"
-            className='form-input used'
+            className='used'
             value={formValues.dueDate.toISOString().substr(0, 10)}
             onChange={handleDateChange}
             required

@@ -48,7 +48,8 @@ export default class DemoApp extends React.Component<{}, DemoAppState> {
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
             firstDay={1} 
-            height={'auto'}
+            // height={'auto'}
+            aspectRatio={2.4}
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}
