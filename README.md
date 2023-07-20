@@ -12,7 +12,7 @@
 
 ## Base functionality
 ### Selecting and editing task
-![](./showof-videos/selectAndEdit.mp4)
+![](./showof-videos/selectAndEdit.gif)
 ### Selecting and clearing task
 ![](./showof-videos)
 ### Creating task
