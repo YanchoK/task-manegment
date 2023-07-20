@@ -175,7 +175,8 @@ const App: React.FC = () => {
       </section>
       <section id='calendar' className='calendar-container'>
         <div className='calendar-wrapper'>
-          <Calendar />
+          <Calendar 
+          tasks={tasks}/>
         </div>
       </section>
       <Footer />
