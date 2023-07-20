@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { Task } from '../../interfaces/Task';
+import './ContentDetails.css'
 
 interface Props {
   onSave: (task: Task) => void;
@@ -48,7 +49,6 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
 
   // Form effects
   useEffect(() => {
-    console.log("in the effect!!!")
     const inputs = document.querySelectorAll('.group input');
     const handleBlur = (e: Event) => {
       const target = e.target as HTMLInputElement;
@@ -68,7 +68,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
         input.removeEventListener('blur', handleBlur);
       });
     };
-  }, [props.onClear]);
+  });
 
   return (
     <div className="content-details">
@@ -78,7 +78,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field1"
             type="text"
             name="description"
-            className={`field`}
+            className={`form-input`}
             value={formValues.description}
             onChange={handleInputChange}
             required
@@ -92,7 +92,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field2"
             type="text"
             name="assignee"
-            className={`field`}
+            className={`form-input`}
             value={formValues.assignee}
             onChange={handleInputChange}
             required
@@ -106,7 +106,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field3"
             type="text"
             name="status"
-            className={`field`}
+            className={`form-input`}
             value={formValues.status}
             onChange={handleInputChange}
             required
@@ -120,7 +120,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field4"
             type="text"
             name="priority"
-            className='field used'
+            className='used'
             value={formValues.priority}
             onChange={handleInputChange}
             required
@@ -134,7 +134,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             id="field5"
             type="date"
             name="dueDate"
-            className='field used'
+            className='used'
             value={formValues.dueDate.toISOString().substr(0, 10)}
             onChange={handleDateChange}
             required
