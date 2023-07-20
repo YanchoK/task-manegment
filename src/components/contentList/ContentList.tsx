@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Task } from '../../interfaces/Task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,31 @@ interface Props {
 }
 
 const ContentList: React.FC<Props> = (props: Props) => {
+
+  const [sortingOption, setSortingOption] = useState('index');
+
+  // Function to handle sorting based on the selected option
+  const handleSort = (option: string) => {
+    setSortingOption(option);
+  };
+
+  // Function to perform the sorting based on the selected option
+  const performSorting = (tasks: Task[]) => {
+    switch (sortingOption) {
+      case 'dateAsc':
+        return tasks.sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime());
+      case 'dateDesc':
+        return tasks.sort((a, b) => b.dueDate.getTime() - a.dueDate.getTime());
+      case 'priority':
+        return tasks.sort((a, b) => a.priority - b.priority);
+      default:
+        return tasks;
+    }
+  };
+
+  // Apply sorting on the tasks before rendering them
+  const sortedTasks = performSorting(props.tasks);
+
   const [selectedTasks, setSelectedTasks] = useState<{ [key: number]: boolean }>({});
 
   const handleCheckboxChange = (id: number) => {
@@ -33,9 +58,17 @@ const ContentList: React.FC<Props> = (props: Props) => {
 
   return (
     <div className="content-list">
+      <div>
+        <select onChange={(e) => handleSort(e.target.value)}>
+          <option value="">Sort by:</option>
+          <option value="dateAsc">Date (Ascending)</option>
+          <option value="dateDesc">Date (Descending)</option>
+          <option value="priority">Priority</option>
+        </select>
+      </div>
       <ul>
-        {props.tasks.map((task) => (
-         <li className='task' key={task.id} onClick={() => handleClick(task.id)}>
+        {sortedTasks.map((task) => (
+          <li className='task' key={task.id} onClick={() => handleClick(task.id)}>
             <input
               className='checkbox'
               type="checkbox"

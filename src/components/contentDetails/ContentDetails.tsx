@@ -121,7 +121,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
         <div className="group">
           <input
             id="field4"
-            type="text"
+            type="number"
             name="priority"
             className='used'
             value={formValues.priority}
