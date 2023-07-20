@@ -118,11 +118,11 @@ const App: React.FC = () => {
     console.log("handleTaskSelection in App")
     console.log(task)
 
-    const fieldElements = document.querySelectorAll('.field');
+    const fieldElements = document.querySelectorAll('.form-input');
 
     // Loop through each element and add the new class "newClass"
     fieldElements.forEach((element) => {
-      element.classList.add('form-input');
+      element.classList.add('used');
     });
 
     setTask(task);
