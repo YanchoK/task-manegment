@@ -9,9 +9,19 @@ import Footer from './components/footer/Footer';
 import Calendar from './components/callender/Calendar';
 
 const App: React.FC = () => {
+
+  const addToDate = (days: number) => {
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const nextDay = currentDay + days;
+    const nextDate = new Date(currentDate);
+    nextDate.setDate(nextDay);
+    return nextDate;
+  }
+
   const task1: Task = {
     id: 1,
-    description: 'Task 1',
+    description: 'Edit',
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
@@ -19,68 +29,68 @@ const App: React.FC = () => {
   };
   const task2: Task = {
     id: 2,
-    description: 'Task 2',
+    description: 'Sellect and clear the task',
     assignee: 'Yancho',
     status: 'In progress',
-    priority: 1,
-    dueDate: new Date(),
+    priority: 2,
+    dueDate: addToDate(1),
   };
   const task3: Task = {
     id: 3,
-    description: 'Task 3',
+    description: 'Delete this task',
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
-    dueDate: new Date(),
+    dueDate: addToDate(2),
   };
   const task4: Task = {
     id: 4,
-    description: 'Task 1',
+    description: 'Last day',
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
-    dueDate: new Date(),
+    dueDate: addToDate(-1),
   };
   const task5: Task = {
     id: 5,
-    description: 'Task 2',
+    description: 'Forgot this one',
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
-    dueDate: new Date(),
+    dueDate: addToDate(-2),
   };
   const task6: Task = {
     id: 6,
-    description: 'Task 3',
+    description: 'Go to the fitness',
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
-    dueDate: new Date(),
+    dueDate: addToDate(7),
   };
   const task7: Task = {
     id: 7,
-    description: 'Task 1',
+    description: 'Go on a hike',
     assignee: 'Yancho',
     status: 'In progress',
     priority: 1,
-    dueDate: new Date(),
+    dueDate: addToDate(3),
   };
-  const task8: Task = {
-    id: 8,
-    description: 'Task 2',
-    assignee: 'Yancho',
-    status: 'In progress',
-    priority: 1,
-    dueDate: new Date(),
-  };
-  const task9: Task = {
-    id: 9,
-    description: 'Task 3',
-    assignee: 'Yancho',
-    status: 'In progress',
-    priority: 1,
-    dueDate: new Date(),
-  };
+  // const task8: Task = {
+  //   id: 8,
+  //   description: 'Task 2',
+  //   assignee: 'Yancho',
+  //   status: 'In progress',
+  //   priority: 1,
+  //   dueDate: new Date(),
+  // };
+  // const task9: Task = {
+  //   id: 9,
+  //   description: 'Task 3',
+  //   assignee: 'Yancho',
+  //   status: 'In progress',
+  //   priority: 1,
+  //   dueDate: new Date(),
+  // };
 
   const emptyTask: Task = {
     id: -1,
@@ -91,7 +101,7 @@ const App: React.FC = () => {
     dueDate: new Date(),
   };
 
-  let taskInitial = [task1, task2, task3, task4, task5, task6, task7, task8, task9];
+  let taskInitial = [task1, task2, task3, task4, task5, task6, task7];
 
   const [tasks, setTasks] = useState(taskInitial);
   const [selectedTask, setTask] = useState<Task>(emptyTask);
@@ -175,9 +185,9 @@ const App: React.FC = () => {
       </section>
       <section id='calendar' className='calendar-container'>
         <div className='calendar-wrapper'>
-          <Calendar 
-          onSelectedTask={handleTaskSelection}
-          tasks={tasks}/>
+          <Calendar
+            onSelectedTask={handleTaskSelection}
+            tasks={tasks} />
         </div>
       </section>
       <Footer />

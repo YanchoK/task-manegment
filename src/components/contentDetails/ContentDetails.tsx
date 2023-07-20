@@ -81,6 +81,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             className={`form-input`}
             value={formValues.description}
             onChange={handleInputChange}
+            autoComplete='off'
             required
           />
           <span className="highlight"></span>
@@ -95,6 +96,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             className={`form-input`}
             value={formValues.assignee}
             onChange={handleInputChange}
+            autoComplete='off'
             required
           />
           <span className="highlight"></span>
@@ -109,6 +111,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             className={`form-input`}
             value={formValues.status}
             onChange={handleInputChange}
+            autoComplete='off'
             required
           />
           <span className="highlight"></span>
@@ -123,6 +126,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             className='used'
             value={formValues.priority}
             onChange={handleInputChange}
+            autoComplete='off'
             required
           />
           <span className="highlight"></span>
@@ -137,6 +141,7 @@ const ContentDetails: React.FC<Props> = (props: Props) => {
             className='used'
             value={formValues.dueDate.toISOString().substr(0, 10)}
             onChange={handleDateChange}
+            autoComplete='off'
             required
           />
           <span className="highlight"></span>
