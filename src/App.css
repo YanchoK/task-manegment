@@ -455,11 +455,11 @@ input:focus ~ .highlight {
   }
 }
 
-
 .calendar-wrapper {
   width: 85%;
   margin: 1rem auto;
   height: 87vh;
+  padding-top: 14vh;
    /* border: #f7450a 2px solid; */
 }
 .calendar-container{

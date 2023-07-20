@@ -6,7 +6,7 @@ import ContentList from './components/contentList/ContentList';
 import ContentDetails from './components/contentDetails/ContentDetails';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
-import DemoApp from './components/callender/DemoApp';
+import Calendar from './components/callender/Calendar';
 
 const App: React.FC = () => {
   const task1: Task = {
@@ -159,7 +159,7 @@ const App: React.FC = () => {
   return (
     <div className='wrapper'>
       <Navbar />
-      <div className="container">
+      <section className="container">
         <ContentList
           tasks={tasks}
           onSelectedTask={handleTaskSelection}
@@ -172,12 +172,12 @@ const App: React.FC = () => {
           selectedTask={selectedTask}
           onClear={handleClear}
         />
-      </div>
-      <div className='calendar-container'>
+      </section>
+      <section id='calendar' className='calendar-container'>
         <div className='calendar-wrapper'>
-          <DemoApp />
+          <Calendar />
         </div>
-      </div>
+      </section>
       <Footer />
     </div>
   );

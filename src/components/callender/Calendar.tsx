@@ -13,22 +13,22 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
 
-interface DemoAppState {
+interface CalendarState {
   weekendsVisible: boolean
   currentEvents: EventApi[]
 }
 
-export default class DemoApp extends React.Component<{}, DemoAppState> {
+export default class Calendar extends React.Component<{}, CalendarState> {
 
-  state: DemoAppState = {
+  state: CalendarState = {
     weekendsVisible: true,
     currentEvents: []
   }
 
   render() {
     return (
-      <div className='demo-app'>
-        <div className='demo-app-main'>
+      <div className='calendar'>
+        <div className='calendar-main'>
           <FullCalendar
              plugins={[listPlugin,dayGridPlugin, timeGridPlugin, interactionPlugin]}
              headerToolbar={{
@@ -48,8 +48,8 @@ export default class DemoApp extends React.Component<{}, DemoAppState> {
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
             firstDay={1} 
-            // height={'auto'}
             aspectRatio={2.4}
+            // height={'auto'}
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}
